@@ -25,22 +25,24 @@ class ProductListWidget extends StatelessWidget {
                         if (snapshot.connectionState ==
                                 ConnectionState.active &&
                             state.status == ProductsStatus.loaded) {
-                          _widget =
-                              Column(
-                                children: [
-                                  SearchBar(
-                                      onChanged: (String input) =>
-                                          context.read<ProductsBloc>().add(SearchProduct(input)),
-                                      constraints: BoxConstraints(
-                                          minHeight: 40,
-                                          minWidth: viewWidth * .9,
-                                          maxHeight: 40,
-                                          maxWidth: viewWidth * .9)),
-                                   ProductList(productList: snapshot.requireData),
-                                ],
-                              );
+                          _widget = Column(
+                            children: [
+                              SearchBar(
+                                  onChanged: (String input) => context
+                                      .read<ProductsBloc>()
+                                      .add(SearchProduct(input)),
+                                  constraints: BoxConstraints(
+                                      minHeight: 40,
+                                      minWidth: viewWidth * .9,
+                                      maxHeight: 40,
+                                      maxWidth: viewWidth * .9)),
+                              SizedBox(
+                                  width: viewWidth * .9,
+                                  child: ProductList(
+                                      productList: snapshot.requireData)),
+                            ],
+                          );
                         }
                         return _widget;
                       }))));
 }
-

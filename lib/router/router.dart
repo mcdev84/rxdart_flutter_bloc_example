@@ -10,16 +10,16 @@ final _rootNavigatorKey = GlobalKey<NavigatorState>();
 
 final router = GoRouter(
   navigatorKey: _rootNavigatorKey,
-  initialLocation: '/',
+  initialLocation: HomePage.routeName,
   routes: <RouteBase>[
     GoRoute(
-        name: 'home',
-        path: '/',
+        name: HomePage.name,
+        path: HomePage.routeName,
         builder: (context, state) => const PageTemplate(child: HomePage())),
     GoRoute(
-        name: 'signin',
+        name: SignInPage.name,
         path: SignInPage.routeName,
-        builder: (context, state) => const SignInPage()),
+        builder: (context, state) => PageTemplate(child: SignInPage())),
 
     // StatefulShellRoute.indexedStack(
     //   builder: (context, state, navigationShell) {

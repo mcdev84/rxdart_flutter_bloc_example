@@ -7,6 +7,9 @@ import 'package:rx_dart/presentation/widgets/products/widgets/product_list_widge
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
+  static const routeName = '/';
+  static const name = 'home';
+
   @override
   Widget build(BuildContext context) {
     return BlocProvider(

@@ -19,7 +19,7 @@ class UserIcon extends StatelessWidget {
           : IconButton(
               onPressed: () {
                 // context.read<AuthenticationBloc>().add(SignIn());
-                context.go(SignInPage.routeName);
+                context.push(SignInPage.routeName);
               },
               icon: const Icon(Icons.no_accounts_outlined));
 }
