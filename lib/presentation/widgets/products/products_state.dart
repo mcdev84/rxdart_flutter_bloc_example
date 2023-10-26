@@ -2,6 +2,7 @@ part of 'products_bloc.dart';
 
 enum ProductsStatus { initial, loading, loaded, error }
 
+@immutable
 final class ProductsState extends Equatable {
   final Map<String, dynamic> error;
   final ProductsStatus status;

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rx_dart/constants/layout/layout.dart';
-import 'package:rx_dart/presentation/home/products_bloc.dart';
-import 'package:rx_dart/presentation/home/widgets/product_list.dart';
+import 'package:rx_dart/presentation/widgets/products/products_bloc.dart';
+import 'package:rx_dart/presentation/widgets/products/widgets/product_list.dart';
 import 'package:rxdart/rxdart.dart';
 
 class ProductListWidget extends StatelessWidget {

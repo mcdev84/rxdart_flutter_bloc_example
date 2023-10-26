@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:get_it/get_it.dart';
+import 'package:rx_dart/blocs/authentication/authentication_bloc.dart';
 import 'package:rx_dart/constants/theme/theme.dart';
 import 'package:rx_dart/presentation/home/view/home.dart';
 
@@ -23,7 +26,10 @@ class MyApp extends StatelessWidget {
       title: 'RxDart and Bloc pattern example app',
       theme: appTheme,
       themeMode: ThemeMode.system,
-      home: const HomePage(),
+      home: MultiBlocProvider(providers: [
+        BlocProvider(
+            create: (context) => GetIt.instance.get<AuthenticationBloc>())
+      ], child: const HomePage()),
     );
   }
 }

@@ -1,21 +1,28 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get_it/get_it.dart';
+import 'package:rx_dart/blocs/authentication/authentication_bloc.dart';
 import 'package:rx_dart/data/datasources/products/products_repository.dart';
 import 'package:rx_dart/data/datasources/products/products_repository_impl.dart';
-import 'package:rx_dart/presentation/home/products_bloc.dart';
+import 'package:rx_dart/presentation/widgets/products/products_bloc.dart';
 
 Future<void> init() async {
   final serviceLocator = GetIt.instance;
 
-  /// DIO
+  /// DIO ***
   serviceLocator.registerLazySingleton<Dio>(() => _providerDio());
 
-  /// BLOC
+  /// BLOCS ***
+
+  /// Products
   serviceLocator
       .registerFactory<ProductsBloc>(() => ProductsBloc(serviceLocator.get()));
 
-  /// REPOSITORIES
+  /// Authentication
+  serviceLocator
+      .registerFactory<AuthenticationBloc>(() => AuthenticationBloc());
+
+  /// REPOSITORIES ***
   serviceLocator.registerLazySingleton<ProductsRepository>(
       () => ProductsRepositoryImpl(serviceLocator.get()));
 }
