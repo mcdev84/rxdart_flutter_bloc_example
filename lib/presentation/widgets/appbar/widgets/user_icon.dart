@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:rx_dart/blocs/authentication/authentication_bloc.dart';
+import 'package:rx_dart/presentation/authentication/signin/signin.dart';
 
 class UserIcon extends StatelessWidget {
   final AuthenticationStatus _status;
@@ -8,10 +10,16 @@ class UserIcon extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) =>
-      // BlocConsumer(listener: (context, state) {}, builder: (context, state) {
-      // return
       _status == AuthenticationStatus.authenticated
-          ? const Icon(Icons.account_circle)
-          : const Icon(Icons.account_circle_outlined);
-// });
+          ? IconButton(
+              onPressed: () {
+                // context.read<AuthenticationBloc>().add(SignOut());
+              },
+              icon: const Icon(Icons.account_circle))
+          : IconButton(
+              onPressed: () {
+                // context.read<AuthenticationBloc>().add(SignIn());
+                context.go(SignInPage.routeName);
+              },
+              icon: const Icon(Icons.no_accounts_outlined));
 }

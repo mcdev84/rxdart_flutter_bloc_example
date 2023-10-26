@@ -12,25 +12,8 @@ class ProductListWidget extends StatelessWidget {
   Widget build(BuildContext context) =>
       BlocConsumer<ProductsBloc, ProductsState>(
           listener: (context, state) {},
-          builder: (context, state) => Container(
-                height: double.maxFinite,
-                padding: const EdgeInsets.symmetric(vertical: 20.0),
-                child: Column(children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      SearchBar(
-                          onChanged: (String input) => context
-                              .read<ProductsBloc>()
-                              .add(SearchProduct(input)),
-                          constraints: BoxConstraints(
-                              minHeight: 40,
-                              minWidth: viewWidth * .9,
-                              maxHeight: 40,
-                              maxWidth: viewWidth * .9)),
-                    ],
-                  ),
-                  const SizedBox(height: 25),
+          builder: (context, state) => SliverList(
+              delegate: SliverChildBuilderDelegate((context, index) =>
                   StreamBuilder(
                       stream: context
                           .read<ProductsBloc>()
@@ -42,12 +25,22 @@ class ProductListWidget extends StatelessWidget {
                         if (snapshot.connectionState ==
                                 ConnectionState.active &&
                             state.status == ProductsStatus.loaded) {
-                          _widget = _widget = Flexible(
-                              child: ProductList(
-                                  productList: snapshot.requireData));
+                          _widget =
+                              Column(
+                                children: [
+                                  SearchBar(
+                                      onChanged: (String input) =>
+                                          context.read<ProductsBloc>().add(SearchProduct(input)),
+                                      constraints: BoxConstraints(
+                                          minHeight: 40,
+                                          minWidth: viewWidth * .9,
+                                          maxHeight: 40,
+                                          maxWidth: viewWidth * .9)),
+                                   ProductList(productList: snapshot.requireData),
+                                ],
+                              );
                         }
                         return _widget;
-                      })
-                ])
-              ));
+                      }))));
 }
+
