@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:rx_dart/blocs/authentication/authentication_bloc.dart';
 
 class SignInPage extends StatelessWidget {
   final GlobalKey<FormState> _signInForm;
@@ -18,7 +20,7 @@ class SignInPage extends StatelessWidget {
           child: Form(
         key: _signInForm,
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             TextFormField(
                 controller: _email,
@@ -29,13 +31,23 @@ class SignInPage extends StatelessWidget {
                   fillColor: Colors.white,
                 )),
             TextFormField(
-                controller: _password,cursorColor: Colors.white,
-                decoration: const InputDecoration( floatingLabelBehavior: FloatingLabelBehavior.auto,
+                controller: _password,
+                cursorColor: Colors.white,
+                decoration: const InputDecoration(
+                  floatingLabelBehavior: FloatingLabelBehavior.auto,
                   labelText: 'Password',
                   hintText: 'Insert password',
                   prefixIcon: Icon(Icons.key),
                   fillColor: Colors.white,
                 )),
+            FloatingActionButton(
+              onPressed: () {
+                context
+                    .read<AuthenticationBloc>()
+                    .add(SignIn(email: _email.text, password: _password.text));
+              },
+              child: const Text('Log in'),
+            )
           ],
         ),
       ));

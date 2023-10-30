@@ -1,6 +1,6 @@
 part of 'products_bloc.dart';
 
-enum ProductsStatus { initial, loading, loaded, error }
+enum ProductsStatus {  loading, loaded, error }
 
 @immutable
 final class ProductsState extends Equatable {
@@ -8,7 +8,7 @@ final class ProductsState extends Equatable {
   final ProductsStatus status;
 
   const ProductsState(
-      {this.status = ProductsStatus.initial,
+      {this.status = ProductsStatus.loading,
       this.error = const <String, dynamic>{}});
 
   ProductsState copyWith({

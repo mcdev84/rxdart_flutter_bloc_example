@@ -1,24 +1,40 @@
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
-import 'package:rx_dart/domain/entities/product/product_entity.dart';
+import 'package:rx_dart/data/datasources/login/login_repository.dart';
+import 'package:rx_dart/domain/entities/user/user_entity.dart';
 import 'package:rxdart/rxdart.dart';
 
 part 'authentication_event.dart';
 
 part 'authentication_state.dart';
 
- class AuthenticationBloc
+class AuthenticationBloc
     extends Bloc<AuthenticationEvent, AuthenticationState> {
-  final BehaviorSubject<List<ProductEntity>> _authenticationSubject;
+  final LogInRepository _logInRepository;
+  final BehaviorSubject<AuthenticationState> _authenticationSubject;
 
-  AuthenticationBloc()
-      : _authenticationSubject = BehaviorSubject<List<ProductEntity>>(),
+  AuthenticationBloc(this._logInRepository)
+      : _authenticationSubject = BehaviorSubject<AuthenticationState>.seeded(
+            const AuthenticationState.unAuthenticated()),
         super(const AuthenticationState.unAuthenticated()) {
-    on<SignIn>((event, emit) {
-      emit(state.copyWith(newStatus: AuthenticationStatus.authenticated));
+    on<SignIn>((event, emit) async {
+      final _login = await _logInRepository.logIn(
+          email: event.email, password: event.password);
+      _login.isRight()
+          ? _authenticationSubject
+              .add(const AuthenticationState.authenticated(User.empty))
+          : _authenticationSubject
+              .add(const AuthenticationState.unAuthenticated());
+
+      /* TODO:
+      * Save token to localStorage
+      * */
     });
     on<SignOut>((event, emit) {
-      emit(state.copyWith(newStatus: AuthenticationStatus.unauthenticated));
+      _authenticationSubject.add(const AuthenticationState.unAuthenticated());
     });
   }
+
+  BehaviorSubject<AuthenticationState> get authenticationSubject =>
+      _authenticationSubject;
 }

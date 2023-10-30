@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:rx_dart/constants/layout/styles.dart';
 
 AnimatedTheme appAnimatedTheme(Widget child) =>
     AnimatedTheme(data: appTheme, child: child);
@@ -19,14 +20,17 @@ final ThemeData appTheme = ThemeData(
     cardTheme: const CardTheme(color: Colors.lime, elevation: 6),
     searchBarTheme: SearchBarThemeData(
         backgroundColor:
-            MaterialStateProperty.resolveWith((states) => Colors.lime),
-        elevation: MaterialStateProperty.resolveWith((states) => 6)),
+            MaterialStateProperty.resolveWith((states) => Colors.white70),
+        elevation: MaterialStateProperty.resolveWith((states) => 6),
+        textStyle:
+            MaterialStateProperty.resolveWith((states) => searchBarInputStyle),
+        hintStyle:
+            MaterialStateProperty.resolveWith((states) => searchBarHintStyle)),
     colorScheme: ColorScheme.fromSwatch(
         errorColor: Colors.redAccent,
         primarySwatch: Colors.teal,
-
-        ///brightness: Brightness.light,
-        /// cardColor: Colors.lime,
-        ///backgroundColor: Colors.lime,
         accentColor: Colors.indigoAccent),
-    scaffoldBackgroundColor: Colors.teal);
+    scaffoldBackgroundColor: Colors.teal,
+    inputDecorationTheme: InputDecorationTheme(
+      hintStyle: searchBarHintStyle,
+    ));

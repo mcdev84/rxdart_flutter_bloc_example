@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
@@ -17,17 +19,15 @@ class ProductsBloc extends Bloc<ProductsEvent, ProductsState> {
   ProductsBloc(
     this._productsRepository,
   )   : _productsSubject = BehaviorSubject<List<ProductEntity>>(),
-        super(const ProductsState()) {
-    on<ProductsFetched>((event, emit) async {
-      /// Before response
-      state.copyWith(
-        status: ProductsStatus.loading,
-        error: {},
-      );
-      await _productsRepository.getProducts().then((value) {
-        _productsSubject.add(value);
-        emit(state.copyWith(status: ProductsStatus.loaded, error: {}));
-      });
+        super(const ProductsState(status:ProductsStatus.loading )) {
+    /// Before response
+    state.copyWith(
+      status: ProductsStatus.loading,
+      error: {},
+    );
+    _productsRepository.getProducts().then((value) {
+      _productsSubject.add(value);
+      emit(state.copyWith(status: ProductsStatus.loaded, error: {}));
     });
 
     on<SearchProduct>((event, emit) async {

@@ -8,7 +8,10 @@ class ProductList extends StatelessWidget {
   const ProductList({required this.productList, super.key});
 
   @override
-  Widget build(BuildContext context) => Column(children: [
-        ...productList.map((product) => ProductCard(product: product))
-      ]);
+  Widget build(BuildContext context) => SliverList(
+      delegate: SliverChildBuilderDelegate(
+          childCount: productList.length,
+          (context, index) => Column(children: [
+                ...productList.map((product) => ProductCard(product: product))
+              ])));
 }

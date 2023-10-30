@@ -15,11 +15,27 @@ final router = GoRouter(
     GoRoute(
         name: HomePage.name,
         path: HomePage.routeName,
-        builder: (context, state) => const PageTemplate(child: HomePage())),
+        pageBuilder: (context, state) => CustomTransitionPage(
+            child: const PageTemplate(child: HomePage()),
+            transitionsBuilder:
+                (context, animation, secondaryAnimation, child) =>
+                    FadeTransition(
+                      opacity: CurveTween(curve: Curves.easeInOutCirc)
+                          .animate(animation),
+                      child: child,
+                    ))),
     GoRoute(
         name: SignInPage.name,
         path: SignInPage.routeName,
-        builder: (context, state) => PageTemplate(child: SignInPage())),
+        pageBuilder: (context, state) => CustomTransitionPage(
+            child: PageTemplate(child: SignInPage()),
+            transitionsBuilder:
+                (context, animation, secondaryAnimation, child) =>
+                    FadeTransition(
+                      opacity: CurveTween(curve: Curves.easeInOutCirc)
+                          .animate(animation),
+                      child: child,
+                    ))),
 
     // StatefulShellRoute.indexedStack(
     //   builder: (context, state, navigationShell) {
