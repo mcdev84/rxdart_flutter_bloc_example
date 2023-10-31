@@ -1,0 +1,11 @@
+import 'package:flutter/cupertino.dart';
+
+TextStyle textStyle(
+        {required double fontSize,
+        FontWeight? fontWeight,
+        FontStyle? fontStyle}) =>
+    TextStyle(
+        fontFamily: 'SometypeMono',
+        fontSize: fontSize,
+        fontWeight: fontWeight ?? FontWeight.normal,
+        fontStyle: fontStyle ?? FontStyle.normal);

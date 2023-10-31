@@ -8,9 +8,15 @@ class PageTemplate extends StatelessWidget {
   const PageTemplate({required this.child, super.key});
 
   @override
-  Widget build(BuildContext context) => Scaffold(
+  Widget build(BuildContext context) => Scaffold(extendBodyBehindAppBar: true,
       key: GlobalKey<ScaffoldState>(),
       drawer: const NavigationDrawer(children: [Text('DRAWER')]),
       bottomNavigationBar: const ApplicationBottomBar(),
-      body: CustomScrollView(slivers: [const ApplicationBar(), child]));
+      body: SafeArea(
+          child: CustomScrollView(slivers: [const ApplicationBar(), child])));
 }
+/* SliverPadding(
+          sliver: child,
+          padding:   EdgeInsets.only(bottom: 20,top: (viewHeight*.145)),
+
+        )*/
