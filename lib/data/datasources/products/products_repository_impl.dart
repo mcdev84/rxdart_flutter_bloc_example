@@ -11,14 +11,14 @@ class ProductsRepositoryImpl extends ProductsRepository {
   Future<List<ProductEntity>> getProducts() async =>
       await _dio.get('/products').then((value) {
         List<ProductEntity> tmp = <ProductEntity>[];
-        for (Map<String, dynamic> product in value.data['products']) {
+        for (Map<String, dynamic> product in value.data["products"]) {
           tmp.add(ProductEntity.fromJson(product));
         }
         return tmp;
       });
 
   @override
-  Future<List<ProductEntity>> searchProducts(String searchTerm)async =>
+  Future<List<ProductEntity>> searchProducts(String searchTerm) async =>
       await _dio.get('/products/search?q=$searchTerm').then((value) {
         List<ProductEntity> tmp = <ProductEntity>[];
         for (Map<String, dynamic> product in value.data['products']) {

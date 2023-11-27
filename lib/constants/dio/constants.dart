@@ -4,7 +4,7 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 final headers = {"Content-Type": "application/json"};
 const timeout = Duration(seconds: 10);
 final baseOptions = BaseOptions(
-    baseUrl: dotenv.get("BASE_URL"),
+    baseUrl:  dotenv.get("BASE_URL"),
     headers: headers,
     connectTimeout: timeout,
     receiveTimeout: timeout);

@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
@@ -19,7 +17,7 @@ class ProductsBloc extends Bloc<ProductsEvent, ProductsState> {
   ProductsBloc(
     this._productsRepository,
   )   : _productsSubject = BehaviorSubject<List<ProductEntity>>(),
-        super(const ProductsState(status:ProductsStatus.loading )) {
+        super(const ProductsState(status: ProductsStatus.loading)) {
     /// Before response
     state.copyWith(
       status: ProductsStatus.loading,

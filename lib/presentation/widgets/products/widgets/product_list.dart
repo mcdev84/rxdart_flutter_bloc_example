@@ -11,7 +11,7 @@ class ProductList extends StatelessWidget {
   Widget build(BuildContext context) => SliverGrid(
       key: const Key('product list'),
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 2,  crossAxisSpacing: 8,mainAxisSpacing: 8),
+          crossAxisCount: 2, crossAxisSpacing: 8, mainAxisSpacing: 8),
       delegate: SliverChildBuilderDelegate(
           addRepaintBoundaries: true,
           addAutomaticKeepAlives: true,

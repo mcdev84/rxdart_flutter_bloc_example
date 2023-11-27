@@ -9,3 +9,8 @@ TextStyle textStyle(
         fontSize: fontSize,
         fontWeight: fontWeight ?? FontWeight.normal,
         fontStyle: fontStyle ?? FontStyle.normal);
+
+const noUnderlineText = TextStyle(
+  decoration: TextDecoration.none,
+  decorationThickness: 0,
+);

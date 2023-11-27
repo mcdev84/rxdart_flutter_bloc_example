@@ -4,25 +4,30 @@ part 'user_entity.g.dart';
 
 @JsonSerializable()
 class User {
-  final String firstName, lastName, dob, email, password, jwt, refreshjwt;
+  final String? image,
+      gender,
+      firstName,
+      lastName,
+      dob,
+      email,
+      password,
+      username,
+      token;
+  final int? id;
 
-  const User(
-      {required this.firstName,
-      required this.lastName,
-      required this.dob,
-      required this.email,
-      required this.password,
-      required this.jwt,
-      required this.refreshjwt});
+  User(
+      {this.gender,
+      this.id,
+      this.image,
+      this.username,
+      this.firstName,
+      this.lastName,
+      this.dob,
+      this.email,
+      this.password,
+      this.token});
 
-  static const empty = User(
-      firstName: '',
-      lastName: '',
-      dob: '',
-      email: '',
-      jwt: '',
-      password: '',
-      refreshjwt: '');
+  static   User empty = User();
 
   factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
 

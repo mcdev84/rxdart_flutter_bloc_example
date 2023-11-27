@@ -33,7 +33,7 @@ Future<void> init() async {
 
   /// User
   serviceLocator.registerLazySingleton<LogInRepository>(
-      () => LogInRepositoryImpl(serviceLocator.get(instanceName: 'mongo')));
+      () => LogInRepositoryImpl(serviceLocator.get(instanceName: 'dummy')));
 }
 
 _providerDio() {

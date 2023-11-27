@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rx_dart/blocs/authentication/authentication_bloc.dart';
+import 'package:rx_dart/constants/layout/text_style.dart';
+import 'package:rx_dart/constants/theme/color/colors.dart';
+import 'package:rx_dart/ext/context_ext.dart';
 
 class SignInPage extends StatelessWidget {
   final GlobalKey<FormState> _signInForm;
@@ -24,28 +27,37 @@ class SignInPage extends StatelessWidget {
           children: [
             TextFormField(
                 controller: _email,
+                style: noUnderlineText,
                 decoration: const InputDecoration(
                   labelText: 'E-mail',
                   hintText: 'Insert email',
                   prefixIcon: Icon(Icons.email),
-                  fillColor: Colors.white,
                 )),
             TextFormField(
+                style: noUnderlineText,
                 controller: _password,
-                cursorColor: Colors.white,
                 decoration: const InputDecoration(
-                  floatingLabelBehavior: FloatingLabelBehavior.auto,
                   labelText: 'Password',
                   hintText: 'Insert password',
                   prefixIcon: Icon(Icons.key),
-                  fillColor: Colors.white,
                 )),
-            FloatingActionButton(
+            ElevatedButton(
               onPressed: () {
                 context
                     .read<AuthenticationBloc>()
                     .add(SignIn(email: _email.text, password: _password.text));
+                final String _text = 'Benvenuto ${context.authenticationBloc.state.user?.username ??
+                context.authenticationBloc.state.errorMsg!.message!
+              }';
+                ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                    content: Text(_text),
+                    backgroundColor: happyBrown,
+                    showCloseIcon: true,
+                    behavior: SnackBarBehavior.floating));
               },
+              style: ButtonStyle(
+                  backgroundColor: MaterialStateProperty.resolveWith(
+                      (states) => happyYellow)),
               child: const Text('Log in'),
             )
           ],

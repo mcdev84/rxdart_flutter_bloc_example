@@ -19,9 +19,13 @@ class ApplicationBar extends StatelessWidget implements PreferredSizeWidget {
                 stream:
                     context.read<AuthenticationBloc>().authenticationSubject,
                 builder: (context, snapshot) => SliverAppBar(
-                  //expandedHeight: appBarSize.height + 25,
-                  //flexibleSpace: const FlexibleSpaceAppBar(),*/
-                  bottom: AppBar(leading: const SizedBox(),toolbarHeight: appBarSize.height,
+                  expandedHeight: expandedHeightAppBar,
+                /*  flexibleSpace: FlexibleSpaceBar(
+                      background: Image.network(
+                          'https://imgbin.com/png/2B77XjNW/tree-juglans-png')),*/
+                  bottom: AppBar(
+                      leading: const SizedBox(),
+                      toolbarHeight: appBarSize.height,
                       title: const SearchAppBar()),
                   key: const Key(name),
                   pinned: true,

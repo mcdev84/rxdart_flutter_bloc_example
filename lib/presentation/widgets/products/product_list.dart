@@ -18,14 +18,14 @@ class ProductListWidget extends StatelessWidget {
                   .distinct()
                   .debounceTime(const Duration(milliseconds: 250)),
               builder: (context, snapshot) {
-                Widget _widget = const SliverToBoxAdapter(
+                Widget widget = const SliverToBoxAdapter(
                     child: CircularProgressIndicator(
                   color: Colors.white,
                 ));
                 if (snapshot.connectionState == ConnectionState.active &&
                     state.status == ProductsStatus.loaded) {
-                  _widget = ProductList(productList: snapshot.requireData);
+                  widget = ProductList(productList: snapshot.requireData);
                 }
-                return _widget;
+                return widget;
               }));
 }

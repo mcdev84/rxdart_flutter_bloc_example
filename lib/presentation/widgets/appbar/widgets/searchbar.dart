@@ -21,7 +21,8 @@ class SearchAppBar extends StatelessWidget {
               onChanged: (String input) =>
                   context.read<ProductsBloc>().add(SearchProduct(input)),
               constraints: BoxConstraints(
-                minHeight: searchBarSize.height,
+                  minHeight: searchBarSize.height,
                   maxHeight: searchBarSize.height,
+                  minWidth: searchBarSize.width,
                   maxWidth: searchBarSize.width)));
 }
