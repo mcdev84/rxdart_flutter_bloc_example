@@ -21,13 +21,14 @@ class _ProductThumbState extends State<ProductThumb>
     /// initializing AnimationController
     _animationController = AnimationController(
       vsync: this,
+
       /// duration is the period of time the animation would last
-      duration: Duration(seconds: 20),
+      duration: const Duration(milliseconds: 300),
     );
 
-    _heartbeatAnimation = Tween(begin: 180.0, end: 140.0).animate(
+    _heartbeatAnimation = Tween(begin: 0.0, end: 90.0).animate(
       CurvedAnimation(
-        curve: Curves. easeOutQuart,
+        curve: Curves.fastOutSlowIn ,
         parent: _animationController,
       ),
     );
@@ -37,7 +38,7 @@ class _ProductThumbState extends State<ProductThumb>
     _animationController.addStatusListener(
       (AnimationStatus status) {
         if (status == AnimationStatus.completed) {
-          _animationController.repeat();
+          _animationController.stop();
         }
       },
     );
