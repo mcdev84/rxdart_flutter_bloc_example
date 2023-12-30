@@ -19,4 +19,11 @@ final double appBarHeightExpanded = appBarSize.height * 1.5;
 final Size searchBarSize = Size(viewSize.width * .75, appBarSize.height * .5);
 
 final Size thumbSize = Size(viewSize.width * .4, viewSize.height * .15);
+
 final expandedHeightAppBar = (appBarSize.height + appBarSize.height * .5);
+
+final Size btnSize = Size(viewSize.width, viewSize.height * .05);
+
+final Size bottomBarSize = Size(viewSize.width, viewSize.height * .1);
+final Size bottomBarDividerSize = Size(viewSize.width, bottomBarSize.height * .1);
+

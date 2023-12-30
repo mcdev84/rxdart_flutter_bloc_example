@@ -4,7 +4,7 @@ import 'package:rx_dart/blocs/products/products_bloc.dart';
 import 'package:rx_dart/constants/layout/sizes.dart';
 import 'package:rx_dart/constants/layout/styles.dart';
 
-class SearchAppBar extends StatelessWidget {
+class SearchAppBar extends StatelessWidget implements PreferredSizeWidget {
   const SearchAppBar({super.key});
 
   @override
@@ -25,4 +25,7 @@ class SearchAppBar extends StatelessWidget {
                   maxHeight: searchBarSize.height,
                   minWidth: searchBarSize.width,
                   maxWidth: searchBarSize.width)));
+
+  @override
+  Size get preferredSize => appBarSize;
 }

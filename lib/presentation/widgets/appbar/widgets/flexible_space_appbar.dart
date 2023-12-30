@@ -6,10 +6,9 @@ class FlexibleSpaceAppBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => FlexibleSpaceBar.createSettings(
-    minExtent: appBarSize.height,
-    maxExtent: appBarSize.height+50,
-    currentExtent: appBarSize.height,
-    toolbarOpacity: 1,
-    child: SizedBox()
-  );
+      minExtent: appBarSize.height,
+      maxExtent: appBarSize.height + 50,
+      currentExtent: appBarSize.height,
+      toolbarOpacity: 1,
+      child: const SizedBox());
 }

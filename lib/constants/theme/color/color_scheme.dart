@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:rx_dart/constants/theme/color/colors.dart';
 
 final colorScheme = ColorScheme.fromSwatch(
-    backgroundColor: Colors.white,
-    cardColor: Colors.white,
-    accentColor: Colors.white,
-    primarySwatch: Colors.blueGrey);
+  backgroundColor: middleGrey,
+  cardColor: happyYellow,
+  errorColor: gentlyRed,
+);
