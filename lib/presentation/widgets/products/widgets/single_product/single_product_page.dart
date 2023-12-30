@@ -4,6 +4,7 @@ import 'package:rx_dart/constants/layout/styles.dart';
 import 'package:rx_dart/constants/layout/text_style.dart';
 import 'package:rx_dart/constants/theme/color/colors.dart';
 import 'package:rx_dart/domain/entities/product/product_entity.dart';
+import 'package:rx_dart/ext/image_ext.dart';
 import 'package:rx_dart/presentation/templates/page_template.dart';
 import 'package:rx_dart/presentation/widgets/appbar/widgets/sign_in_clipper.dart';
 import 'package:rx_dart/presentation/widgets/network_image_chaced/cached_network_image.dart';
@@ -75,14 +76,19 @@ class SingleProductPage extends StatelessWidget {
                 left: viewSize.width * .5 - viewSize.width * .25,
                 child: CircleAvatar(
                     radius: viewSize.width * .25,
-                    backgroundImage:
-                        cachedNetworkImage(imageUrl: product.images!.first))),
+                    backgroundImage: cachedNetworkImage(
+                        imageUrl: product.images!.first,
+                        cachedHeight: (viewSize.height * .25).cacheSize(context).round(),
+                        cachedWidth: (viewSize.width / 2).cacheSize(context).round()))),
             Positioned(
                 top: viewSize.height * .4 + 75,
                 left: viewSize.width * .125,
                 right: viewSize.width * .125,
                 child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [Text(product.description!, style: hintStyle)]))
+                    children: [
+                      Text(product.description!, style: hintStyle),
+                  Image.network(product.images!.first)
+                    ]))
           ])));
 }
